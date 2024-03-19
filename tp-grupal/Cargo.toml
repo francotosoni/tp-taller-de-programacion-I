@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "btc_node",
+    "interface",
+]

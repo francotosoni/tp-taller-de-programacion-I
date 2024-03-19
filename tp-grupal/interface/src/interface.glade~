@@ -1,0 +1,1471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAdjustment" id="amount_spin_button_adjustment">
+    <property name="upper">9.2233720368547758e+18</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="fee_amount_spin_button_adjustment">
+    <property name="upper">9.2233720368547758e+18</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkListStore" id="pay_to_currency_list_store">
+    <columns>
+      <!-- column-name currency1 -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">BTC</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">ETH</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="pending_transactions">
+    <columns>
+      <!-- column-name Tx -->
+      <column type="gchararray"/>
+      <!-- column-name Amount -->
+      <column type="gchararray"/>
+      <!-- column-name Sender -->
+      <column type="gchararray"/>
+      <!-- column-name Receiver -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="transactions_columns">
+    <columns>
+      <!-- column-name Tx -->
+      <column type="gchararray"/>
+      <!-- column-name Value -->
+      <column type="gchararray"/>
+      <!-- column-name Size -->
+      <column type="gchararray"/>
+      <!-- column-name Amount -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkApplicationWindow" id="app">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Bitcoin Node</property>
+    <child>
+      <object class="GtkFixed" id="app_fixed">
+        <property name="width-request">900</property>
+        <property name="height-request">500</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar">
+            <property name="width-request">100</property>
+            <property name="height-request">30</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-new</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-open</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-save</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-save-as</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-quit</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">_Settings</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-cut</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-copy</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-paste</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-delete</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">_Window</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">_Help</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImageMenuItem">
+                        <property name="label">gtk-about</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="use-underline">True</property>
+                        <property name="use-stock">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="sectionbar">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkToggleButton" id="menu_button_overview">
+                <property name="width-request">100</property>
+                <property name="height-request">80</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="relief">half</property>
+                <child>
+                  <object class="GtkFixed">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">go-home-symbolic</property>
+                        <property name="icon_size">5</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Overview</property>
+                      </object>
+                      <packing>
+                        <property name="x">105</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleButton" id="menu_button_send">
+                <property name="width-request">100</property>
+                <property name="height-request">80</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="relief">half</property>
+                <signal name="toggled" handler="on_menu_button_send_toggled" swapped="no"/>
+                <child>
+                  <object class="GtkFixed">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">mail-forward-symbolic</property>
+                        <property name="icon_size">5</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Send</property>
+                      </object>
+                      <packing>
+                        <property name="x">105</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleButton" id="menu_button_accounts">
+                <property name="width-request">100</property>
+                <property name="height-request">80</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="relief">half</property>
+                <child>
+                  <object class="GtkFixed">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">dialog-password-symbolic</property>
+                        <property name="icon_size">5</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Accounts</property>
+                      </object>
+                      <packing>
+                        <property name="x">105</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleButton" id="menu_button_transactions">
+                <property name="width-request">100</property>
+                <property name="height-request">80</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="relief">half</property>
+                <child>
+                  <object class="GtkFixed">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">network-transmit-receive-symbolic</property>
+                        <property name="icon_size">5</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Transactions</property>
+                      </object>
+                      <packing>
+                        <property name="x">105</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="wallet_fixed">
+                <property name="width-request">220</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="wallet_label">
+                    <property name="width-request">100</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Wallet:</property>
+                  </object>
+                  <packing>
+                    <property name="y">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="wallets_combo_box">
+                    <property name="width-request">115</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="has-entry">True</property>
+                    <child internal-child="entry">
+                      <object class="GtkEntry">
+                        <property name="can-focus">False</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">105</property>
+                    <property name="y">30</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="y">30</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="width-request">900</property>
+            <property name="height-request">380</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkFixed" id="default_page">
+                <property name="width-request">32</property>
+                <property name="height-request">32</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+              </object>
+              <packing>
+                <property name="name">default_page</property>
+                <property name="title" translatable="yes">default_page</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="overview_page">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkFrame" id="overview_page_frame1">
+                    <property name="width-request">310</property>
+                    <property name="height-request">300</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-bottom">104</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">etched-out</property>
+                    <child>
+                      <object class="GtkBox" id="overview_page_box1">
+                        <property name="width-request">100</property>
+                        <property name="height-request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkFixed" id="balances_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="balances_row_label">
+                                <property name="width-request">100</property>
+                                <property name="height-request">60</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-bottom">20</property>
+                                <property name="label" translatable="yes">Balances</property>
+                              </object>
+                              <packing>
+                                <property name="x">11</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkImage" id="balances_row_image">
+                                <property name="width-request">100</property>
+                                <property name="height-request">60</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-bottom">20</property>
+                                <property name="icon-name">dialog-warning-symbolic</property>
+                                <property name="icon_size">5</property>
+                              </object>
+                              <packing>
+                                <property name="x">150</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="available_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="available_row_label">
+                                <property name="width-request">100</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Available:</property>
+                                <property name="ellipsize">middle</property>
+                              </object>
+                              <packing>
+                                <property name="x">11</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="available_row_size">
+                                <property name="width-request">80</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">0</property>
+                                <property name="ellipsize">middle</property>
+                              </object>
+                              <packing>
+                                <property name="x">150</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="avaliable_row_sat_label">
+                                <property name="width-request">50</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">sat</property>
+                                <property name="ellipsize">middle</property>
+                              </object>
+                              <packing>
+                                <property name="x">240</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="pending_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="pending_row_label">
+                                <property name="width-request">100</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Pending:</property>
+                              </object>
+                              <packing>
+                                <property name="x">11</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="pending_row_size">
+                                <property name="width-request">80</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">0</property>
+                              </object>
+                              <packing>
+                                <property name="x">150</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="pending_row_sat_label">
+                                <property name="width-request">50</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">sat</property>
+                                <property name="ellipsize">middle</property>
+                              </object>
+                              <packing>
+                                <property name="x">240</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="separator_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="separator_label">
+                                <property name="width-request">100</property>
+                                <property name="height-request">30</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">----------------------------------------------------</property>
+                              </object>
+                              <packing>
+                                <property name="x">50</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="total_row_fixed">
+                            <property name="width-request">300</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <child>
+                              <object class="GtkLabel" id="total_row_label">
+                                <property name="width-request">100</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Total:</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="total_size_label">
+                                <property name="width-request">80</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">0</property>
+                              </object>
+                              <packing>
+                                <property name="x">150</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="total_row_sat_label">
+                                <property name="width-request">50</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">sat</property>
+                                <property name="ellipsize">middle</property>
+                              </object>
+                              <packing>
+                                <property name="x">235</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label_item">
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">25</property>
+                    <property name="y">25</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="overview_page_frame2">
+                    <property name="width-request">900</property>
+                    <property name="height-request">500</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-bottom">104</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">etched-out</property>
+                    <child>
+                      <object class="GtkBox" id="overview_page_box2">
+                        <property name="width-request">730</property>
+                        <property name="height-request">100</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkFixed" id="recent_transactions_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="recent_transactions_row_label">
+                                <property name="width-request">130</property>
+                                <property name="height-request">60</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Pending transactions</property>
+                              </object>
+                              <packing>
+                                <property name="x">30</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkImage" id="recent_transactions_row_image">
+                                <property name="width-request">100</property>
+                                <property name="height-request">60</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">dialog-warning-symbolic</property>
+                                <property name="icon_size">5</property>
+                              </object>
+                              <packing>
+                                <property name="x">230</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="pending_transaction">
+                            <property name="width-request">32</property>
+                            <property name="height-request">32</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkFrame" id="pending_transactions_frame">
+                                <property name="width-request">850</property>
+                                <property name="height-request">400</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">none</property>
+                                <child>
+                                  <object class="GtkScrolledWindow" id="pending_transactions_scrolled_window">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="shadow-type">in</property>
+                                    <child>
+                                      <object class="GtkTreeView" id="pending_transactions_tree_view">
+                                        <property name="width-request">850</property>
+                                        <property name="height-request">80</property>
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="model">pending_transactions</property>
+                                        <property name="search-column">0</property>
+                                        <property name="enable-grid-lines">both</property>
+                                        <child internal-child="selection">
+                                          <object class="GtkTreeSelection"/>
+                                        </child>
+                                        <child>
+                                          <object class="GtkTreeViewColumn" id="column_tx_id2">
+                                            <property name="spacing">1</property>
+                                            <property name="min-width">400</property>
+                                            <property name="title" translatable="yes">Tx ID</property>
+                                            <child>
+                                              <object class="GtkCellRendererText" id="cell_rendered_text_tx_id2"/>
+                                              <attributes>
+                                                <attribute name="text">0</attribute>
+                                              </attributes>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkTreeViewColumn" id="column_value2">
+                                            <property name="spacing">1</property>
+                                            <property name="min-width">200</property>
+                                            <property name="title" translatable="yes">Value</property>
+                                            <child>
+                                              <object class="GtkCellRendererText" id="cell_rendered_text_value2"/>
+                                              <attributes>
+                                                <attribute name="text">1</attribute>
+                                              </attributes>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkTreeViewColumn" id="column_sender1">
+                                            <property name="min-width">150</property>
+                                            <property name="title" translatable="yes">Payer</property>
+                                            <child>
+                                              <object class="GtkCellRendererText" id="cell_rendered_sender1"/>
+                                              <attributes>
+                                                <attribute name="text">2</attribute>
+                                              </attributes>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkTreeViewColumn" id="column_receiver1">
+                                            <property name="min-width">150</property>
+                                            <property name="title" translatable="yes">Payee</property>
+                                            <child>
+                                              <object class="GtkCellRendererText" id="cell_rendered_text_receiver1"/>
+                                              <attributes>
+                                                <attribute name="text">3</attribute>
+                                              </attributes>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label_item">
+                                  <placeholder/>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="x">25</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label_item">
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">380</property>
+                    <property name="y">20</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="overview_page_progress_bar">
+                    <property name="width-request">600</property>
+                    <property name="height-request">30</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pulse-step">0.01</property>
+                    <property name="show-text">True</property>
+                    <property name="ellipsize">middle</property>
+                  </object>
+                  <packing>
+                    <property name="x">190</property>
+                    <property name="y">760</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="overview_page_progress_bar_label">
+                    <property name="width-request">100</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Connecting to peers...</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">750</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinner" id="overview_page_spinner">
+                    <property name="width-request">75</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="active">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">1150</property>
+                    <property name="y">730</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">overview_page</property>
+                <property name="title" translatable="yes">overview_page</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="send_page">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkFrame" id="send_page_frame1">
+                    <property name="width-request">1100</property>
+                    <property name="height-request">200</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">etched-out</property>
+                    <child>
+                      <object class="GtkFixed" id="send_page_frame1_fixed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkFixed" id="pay_to_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="pay_to_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Pay to:</property>
+                              </object>
+                              <packing>
+                                <property name="x">15</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="pay_to_entry">
+                                <property name="width-request">630</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="placeholder-text" translatable="yes">Enter a bitcoin address (e.g. d01B39C49C7ec7a17d7dFC092B3202e1BCC34756)</property>
+                              </object>
+                              <packing>
+                                <property name="x">100</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">20</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="amount_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="amount_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Amount:</property>
+                              </object>
+                              <packing>
+                                <property name="x">16</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="amount_spin_button">
+                                <property name="width-request">300</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="progress-pulse-step">2.2351741811588166e-10</property>
+                                <property name="adjustment">amount_spin_button_adjustment</property>
+                                <property name="numeric">True</property>
+                              </object>
+                              <packing>
+                                <property name="x">100</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="amount_btc_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Satoshis</property>
+                              </object>
+                              <packing>
+                                <property name="x">420</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="pay_button">
+                                <property name="label" translatable="yes">Pay</property>
+                                <property name="width-request">80</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                              </object>
+                              <packing>
+                                <property name="x">650</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">120</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="fee_amount_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="fee_amount_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Fee Amount:</property>
+                              </object>
+                              <packing>
+                                <property name="x">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="fee_amount_spin_button">
+                                <property name="width-request">300</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="text" translatable="yes">0.0000</property>
+                                <property name="progress-pulse-step">2.2351741811588166e-10</property>
+                                <property name="adjustment">fee_amount_spin_button_adjustment</property>
+                                <property name="numeric">True</property>
+                                <property name="value">2.2351741811588166e-10</property>
+                              </object>
+                              <packing>
+                                <property name="x">100</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="amount_btc_label1">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Satoshis</property>
+                              </object>
+                              <packing>
+                                <property name="x">420</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">70</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label_item">
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">20</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="send_page_progress_bar">
+                    <property name="width-request">600</property>
+                    <property name="height-request">30</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pulse-step">0.01</property>
+                    <property name="show-text">True</property>
+                    <property name="ellipsize">middle</property>
+                  </object>
+                  <packing>
+                    <property name="x">190</property>
+                    <property name="y">760</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="send_page_progress_bar_label">
+                    <property name="width-request">100</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Connecting to peers...</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">750</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinner" id="send_page_spinner">
+                    <property name="width-request">75</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="active">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">1150</property>
+                    <property name="y">730</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">send_page</property>
+                <property name="title" translatable="yes">send_page</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="accounts_page">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkFrame" id="accounts_page_frame1">
+                    <property name="width-request">770</property>
+                    <property name="height-request">310</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">etched-out</property>
+                    <child>
+                      <object class="GtkFixed" id="accounts_page_frame1_fixed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkFixed" id="name_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="name_row_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Name:</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="name_row_entry">
+                                <property name="width-request">630</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="placeholder-text" translatable="yes">Enter a name </property>
+                              </object>
+                              <packing>
+                                <property name="x">100</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">60</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="private_key_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="private_key_row_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Wif:</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="private_key_row_entry">
+                                <property name="width-request">630</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="placeholder-text" translatable="yes">Enter the wif of the wallet</property>
+                              </object>
+                              <packing>
+                                <property name="x">100</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">160</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFixed" id="public_key_row_fixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="public_key_row_label">
+                                <property name="width-request">60</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Address:</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="public_key_row_entry">
+                                <property name="width-request">630</property>
+                                <property name="height-request">40</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="placeholder-text" translatable="yes">Enter the address of the wallet</property>
+                              </object>
+                              <packing>
+                                <property name="x">100</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">110</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="accounts_page_frame1_label">
+                            <property name="width-request">100</property>
+                            <property name="height-request">80</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Add account</property>
+                          </object>
+                          <packing>
+                            <property name="x">10</property>
+                            <property name="y">-10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="accounts_page_frame1_button">
+                            <property name="label" translatable="yes">Create</property>
+                            <property name="width-request">100</property>
+                            <property name="height-request">40</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                          </object>
+                          <packing>
+                            <property name="x">640</property>
+                            <property name="y">220</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label_item">
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">25</property>
+                    <property name="y">25</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="accounts_page_progress_bar">
+                    <property name="width-request">600</property>
+                    <property name="height-request">30</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pulse-step">0.01</property>
+                    <property name="show-text">True</property>
+                    <property name="ellipsize">middle</property>
+                  </object>
+                  <packing>
+                    <property name="x">190</property>
+                    <property name="y">760</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="accounts_page_progress_bar_label">
+                    <property name="width-request">100</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Connecting to peers...</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">750</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinner" id="accounts_page_spinner">
+                    <property name="width-request">75</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="active">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">1150</property>
+                    <property name="y">730</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">accounts_page</property>
+                <property name="title" translatable="yes">accounts_page</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="transactions_page">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkFrame" id="transactions_page_frame">
+                    <property name="width-request">850</property>
+                    <property name="height-request">600</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">none</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="transactions_page_scrolled_window">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="transactions_page_tree_view">
+                            <property name="width-request">850</property>
+                            <property name="height-request">80</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">transactions_columns</property>
+                            <property name="search-column">0</property>
+                            <property name="enable-grid-lines">both</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="column_tx_id">
+                                <property name="spacing">1</property>
+                                <property name="min-width">400</property>
+                                <property name="title" translatable="yes">Tx ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cell_rendered_text_tx_id"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="column_value">
+                                <property name="spacing">1</property>
+                                <property name="min-width">200</property>
+                                <property name="title" translatable="yes">Value</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cell_rendered_text_value"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="column_in_size">
+                                <property name="min-width">150</property>
+                                <property name="title" translatable="yes">Inputs</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cell_rendered_text_in_size"/>
+                                  <attributes>
+                                    <attribute name="text">2</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="column_out_size">
+                                <property name="min-width">150</property>
+                                <property name="title" translatable="yes">Outputs</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cell_rendered_text_out_size"/>
+                                  <attributes>
+                                    <attribute name="text">3</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label_item">
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">25</property>
+                    <property name="y">25</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="transactions_page_progress_bar">
+                    <property name="width-request">600</property>
+                    <property name="height-request">30</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pulse-step">0.01</property>
+                    <property name="show-text">True</property>
+                    <property name="ellipsize">middle</property>
+                  </object>
+                  <packing>
+                    <property name="x">190</property>
+                    <property name="y">760</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="transactions_page_progress_bar_label">
+                    <property name="width-request">100</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Connecting to peers...</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">750</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinner" id="transactions_page_spinner">
+                    <property name="width-request">75</property>
+                    <property name="height-request">60</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="active">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">1150</property>
+                    <property name="y">730</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">transactions_page</property>
+                <property name="title" translatable="yes">transactions_page</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="y">120</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
